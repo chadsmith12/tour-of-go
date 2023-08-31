@@ -8,6 +8,9 @@ import (
 
 func main() {
 	l := linkedlist.LinkedList[int]{}
-	l.Append(5).Append(7).Append(10).RemoveLast()
+	l.Append(5)
+	l.Append(7)
+	l.Append(10)
+	l.RemoveLast()
 	fmt.Println(l)
 }

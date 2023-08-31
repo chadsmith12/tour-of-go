@@ -1,21 +1,22 @@
 package linkedlist
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 )
 
 type Node[T any] struct {
 	Next  *Node[T]
-	Prev *Node[T]
+	Prev  *Node[T]
 	Value T
 }
 
 type LinkedList[T any] struct {
-	head *Node[T]
-	tail *Node[T]
+	head   *Node[T]
+	tail   *Node[T]
 	length int
 }
+	
 
 func (list *LinkedList[T]) Append(value T) *LinkedList[T] {
 	node := &Node[T]{Value: value}
@@ -32,11 +33,11 @@ func (list *LinkedList[T]) Append(value T) *LinkedList[T] {
 	return list
 }
 
-func (list *LinkedList[T]) RemoveLast() (*LinkedList[T], error ){
+func (list *LinkedList[T]) RemoveLast() (*LinkedList[T], error) {
 	if list.head == nil || list.tail == nil {
 		return nil, errors.New("Can not remove from am empty list")
 	}
-	
+
 	list.length -= 1
 	if list.length == 0 {
 		list.head = nil
@@ -45,7 +46,7 @@ func (list *LinkedList[T]) RemoveLast() (*LinkedList[T], error ){
 	}
 	beforeTail := list.tail.Prev
 	beforeTail.Next = nil
-	list.tail = beforeTail;
+	list.tail = beforeTail
 
 	return list, nil
 }
