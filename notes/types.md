@@ -20,7 +20,6 @@ p = %i
 ```
 
 The `*` operator denotes the pointer's underlying value.
-
 ```
 fmt.Println(*p) // read i through the pointer p
 *p = 21 // set i through the pointer p
@@ -30,7 +29,7 @@ This is known as "dereferencing" and "indirecting".
 
 ## Structs
 
-A `struct` is ac ollection of fields.
+A `struct` is a collection of fields.
 
 ### Struct Fields
 
