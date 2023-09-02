@@ -51,3 +51,9 @@ If you send on a closed channel it will cause a panic.
 **NOTE**: Only the sender should close a channel, never the receiver. Sending on a closed channel willl cause a panic.
 
 **Another Note**: Channels aren't like files, you don't usually need to close them. Closing is only necessary when the receiver must be told there are no more values coming, such as to terminate a range loop.
+
+## Select
+
+The `select` statement lets a goroutine wait on multiple communication operations. A `select` blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready.
+
+The `default` case in a select is run if no other case is ready. Use a `default` case to try a send or receive without blocking.
