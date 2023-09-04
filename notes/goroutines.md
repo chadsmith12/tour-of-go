@@ -57,3 +57,22 @@ If you send on a closed channel it will cause a panic.
 The `select` statement lets a goroutine wait on multiple communication operations. A `select` blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready.
 
 The `default` case in a select is run if no other case is ready. Use a `default` case to try a send or receive without blocking.
+
+## sync.Mutex
+
+Channels are great for communication among goroutines. If we don't need communication and just want to make sure only one goroutine can access a variable at a time to avoid conflict, then we use the concept *mutal exclusion.* This is also called mutex.
+
+Go's standard library provides mutal exclusion with `sync.Mutex` and it's two methods:
+
+* `Lock`
+* `Unlock`
+
+We can define a block of code to be executed in a mutual exclusion by surrounding it with acall to `Lock` and `Unlock`. You can also use `defer` to ensure the mutex will be unlocked.
+
+## Web Crawler Exercise
+
+This exercise is locoated under [../examples/web_crawler/main.go][examples/web_crawler/main.go] and shows a basic, fake, web crawler and fetches URLs in parallel without fetching the same URL twice.
+
+This exercise creates wrapper around a map that is safe that uses a mutex. It provides a way to add something to the cache and check to see if a url is already present in a safe manner. This also keeps tracks of any errors that might happen for each URL so that they could be shown later.
+
+As it crawls the URLs in a parallel wmanner it uses a channel to communicate back to the original crawl method that it has finished. Once all have communicated back they are done, the results are shown back to the user.
